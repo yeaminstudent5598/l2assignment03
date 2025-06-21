@@ -2,18 +2,18 @@ import { Request, Response } from 'express';
 import bookModel from '../models/book.model';
 import borrowModel from '../models/borrow.model';
 
-
-export const borrowBook = async (req: Request, res: Response) => {
+export const borrowBook = async (req: Request, res: Response): Promise<void> => {
   try {
     const { book: bookId, quantity, dueDate } = req.body;
     const book = await bookModel.findById(bookId);
 
     if (!book || book.copies < quantity) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: 'Not enough copies available',
         error: 'Insufficient copies'
       });
+      return;  // early exit, no further processing
     }
 
     book.copies -= quantity;
@@ -32,7 +32,7 @@ export const borrowBook = async (req: Request, res: Response) => {
   }
 };
 
-export const getBorrowedSummary = async (_req: Request, res: Response) => {
+export const getBorrowedSummary = async (_req: Request, res: Response): Promise<void> => {
   try {
     const summary = await borrowModel.aggregate([
       {
@@ -49,9 +49,7 @@ export const getBorrowedSummary = async (_req: Request, res: Response) => {
           as: 'bookInfo'
         }
       },
-      {
-        $unwind: '$bookInfo'
-      },
+      { $unwind: '$bookInfo' },
       {
         $project: {
           book: {

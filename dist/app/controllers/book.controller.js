@@ -38,9 +38,10 @@ const getAllBooks = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     if (filter)
         query.genre = filter;
     try {
-        const books = yield Book.find(query)
+        const books = yield book_model_1.default.find(query)
             .sort({ [sortBy]: sort === 'asc' ? 1 : -1 })
             .limit(parseInt(limit));
+        console.log(books);
         res.json({
             success: true,
             message: 'Books retrieved successfully',
@@ -48,13 +49,14 @@ const getAllBooks = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
     catch (error) {
+        console.log("error showing", error);
         res.status(500).json({ success: false, message: 'Error retrieving books', error });
     }
 });
 exports.getAllBooks = getAllBooks;
 const getBookById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const book = yield Book.findById(req.params.bookId);
+        const book = yield book_model_1.default.findById(req.params.bookId);
         res.json({ success: true, message: 'Book retrieved successfully', data: book });
     }
     catch (error) {
@@ -64,7 +66,7 @@ const getBookById = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.getBookById = getBookById;
 const updateBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const book = yield Book.findByIdAndUpdate(req.params.bookId, req.body, { new: true });
+        const book = yield book_model_1.default.findByIdAndUpdate(req.params.bookId, req.body, { new: true });
         res.json({ success: true, message: 'Book updated successfully', data: book });
     }
     catch (error) {
@@ -74,7 +76,7 @@ const updateBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.updateBook = updateBook;
 const deleteBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield Book.findByIdAndDelete(req.params.bookId);
+        yield book_model_1.default.findByIdAndDelete(req.params.bookId);
         res.json({ success: true, message: 'Book deleted successfully', data: null });
     }
     catch (error) {

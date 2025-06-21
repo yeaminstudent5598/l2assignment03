@@ -20,11 +20,12 @@ const borrowBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const { book: bookId, quantity, dueDate } = req.body;
         const book = yield book_model_1.default.findById(bookId);
         if (!book || book.copies < quantity) {
-            return res.status(400).json({
+            res.status(400).json({
                 success: false,
                 message: 'Not enough copies available',
                 error: 'Insufficient copies'
             });
+            return; // early exit, no further processing
         }
         book.copies -= quantity;
         if (book.copies === 0)
@@ -44,7 +45,7 @@ const borrowBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.borrowBook = borrowBook;
 const getBorrowedSummary = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const summary = yield Borrow.aggregate([
+        const summary = yield borrow_model_1.default.aggregate([
             {
                 $group: {
                     _id: '$book',
@@ -59,9 +60,7 @@ const getBorrowedSummary = (_req, res) => __awaiter(void 0, void 0, void 0, func
                     as: 'bookInfo'
                 }
             },
-            {
-                $unwind: '$bookInfo'
-            },
+            { $unwind: '$bookInfo' },
             {
                 $project: {
                     book: {
