@@ -6,37 +6,38 @@ A simple RESTful API for managing books and borrowing records, built using **Exp
 
 ## 🚀 Features
 
-- 📖 Create, Read, Update, Delete (CRUD) operations for Books
-- 🔍 Filter and sort books by genre, date, etc.
-- 📦 Borrow books and manage available copies
-- 📊 Aggregated summary of borrowed books (using MongoDB Aggregation)
-- ✅ Schema validation using Mongoose
-- ⚙️ Middleware and custom business logic
+- 📖 Create, Read, Update, Delete (CRUD) operations for Books  
+- 🔍 Filter and sort books by genre, date, etc.  
+- 📦 Borrow books and manage available copies  
+- 📊 Aggregated summary of borrowed books (using MongoDB Aggregation)  
+- ✅ Schema validation using Mongoose  
+- ⚙️ Middleware and custom business logic  
 
 ---
 
 ## 📁 Project Structure
 
+```
 ├── src
-│ ├── app
-│ │ ├── controllers
-│ │ ├── models
-│ │ ├── routes
-│ ├── index.ts
+│   ├── app
+│   │   ├── controllers
+│   │   ├── models
+│   │   ├── routes
+│   └── index.ts
 ├── .env
 ├── .gitignore
 ├── package.json
 ├── tsconfig.json
-
+```
 
 ---
 
 ## 📦 Tech Stack
 
-- **Backend:** Express.js
-- **Language:** TypeScript
-- **Database:** MongoDB (with Mongoose)
-- **Validation & Logic:** Mongoose Schema, Middleware, Aggregation
+- **Backend:** Express.js  
+- **Language:** TypeScript  
+- **Database:** MongoDB (with Mongoose)  
+- **Validation & Logic:** Mongoose Schema, Middleware, Aggregation  
 
 ---
 
@@ -47,42 +48,55 @@ A simple RESTful API for managing books and borrowing records, built using **Exp
 ```bash
 git clone https://github.com/yourusername/library-api.git
 cd library-api
-2️⃣ Install Dependencies
-bash
-Copy
-Edit
+```
+
+### 2️⃣ Install Dependencies
+
+```bash
 npm install
-3️⃣ Create a .env File
-env
-Copy
-Edit
+```
+
+### 3️⃣ Create a `.env` File
+
+```env
 PORT=5000
 MONGODB_URI=mongodb+srv://yourusername:yourpassword@cluster.mongodb.net/library
-⚠️ Make sure to not push this file! It's ignored via .gitignore.
+```
 
-4️⃣ Start the Development Server
-bash
-Copy
-Edit
+> ⚠️ Make sure to **not push** this file! It's ignored via `.gitignore`.
+
+### 4️⃣ Start the Development Server
+
+```bash
 npm run dev
-📮 API Endpoints
-✅ Book Routes
-Method	Endpoint	Description
-POST	/api/books	Create a new book
-GET	/api/books	Get all books (filterable)
-GET	/api/books/:bookId	Get a book by ID
-PUT	/api/books/:bookId	Update a book
-DELETE	/api/books/:bookId	Delete a book
+```
 
-✅ Borrow Routes
-Method	Endpoint	Description
-POST	/api/borrow	Borrow a book
-GET	/api/borrow	Get summary of borrowed books
+---
 
-📊 Example Aggregated Response
-json
-Copy
-Edit
+## 📮 API Endpoints
+
+### ✅ Book Routes
+
+| Method | Endpoint              | Description                |
+|--------|-----------------------|----------------------------|
+| POST   | `/api/books`          | Create a new book          |
+| GET    | `/api/books`          | Get all books (filterable) |
+| GET    | `/api/books/:bookId`  | Get a book by ID           |
+| PUT    | `/api/books/:bookId`  | Update a book              |
+| DELETE | `/api/books/:bookId`  | Delete a book              |
+
+### ✅ Borrow Routes
+
+| Method | Endpoint        | Description                       |
+|--------|-----------------|-----------------------------------|
+| POST   | `/api/borrow`   | Borrow a book                     |
+| GET    | `/api/borrow`   | Get summary of borrowed books     |
+
+---
+
+## 📊 Example Aggregated Response
+
+```json
 {
   "success": true,
   "message": "Borrowed books summary retrieved successfully",
@@ -96,24 +110,24 @@ Edit
     }
   ]
 }
-📽️ Video Explanation
-👉 Click here to watch the video explanation
-
-📌 Author
-Name: Yeamin Madbor
-
-Email: yeaminstudent5598@gmail.com
-
-GitHub: @yeaminstudent5598
-
-📄 License
-This project is open-source and available under the MIT License.
-
+```
 
 ---
 
-## 🎁 Bonus Suggestion:
+## 📽️ Video Explanation
 
-- চাইলে তুমি `README.md` এর নিচে Live Link, Screenshot, অথবা API Docs (Swagger) লিংকও যোগ করতে পারো।
+👉 [Click here to watch the video explanation](https://your-video-link.com)
 
-> বলো ভাই, এটা PDF বানিয়ে দিবো নাকি সরাসরি তোমার প্রজেক্টে paste করে দিবে? 😄
+---
+
+## 📌 Author
+
+- **Name:** Yeamin Madbor  
+- **Email:** yeaminstudent5598@gmail.com  
+- **GitHub:** [@yeaminstudent5598](https://github.com/yeaminstudent5598)
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
