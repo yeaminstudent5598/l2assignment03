@@ -1,49 +1,60 @@
 # 📚 Library Management API
 
-A simple RESTful API for managing books and borrowing records, built using **Express.js**, **TypeScript**, and **MongoDB (Mongoose)**.
+A RESTful API built with **Express.js**, **TypeScript**, and **MongoDB** to manage books and borrow records efficiently.
 
 ---
 
 ## 🚀 Features
 
-- 📖 Create, Read, Update, Delete (CRUD) operations for Books  
-- 🔍 Filter and sort books by genre, date, etc.  
-- 📦 Borrow books and manage available copies  
-- 📊 Aggregated summary of borrowed books (using MongoDB Aggregation)  
-- ✅ Schema validation using Mongoose  
-- ⚙️ Middleware and custom business logic  
+- 📖 Create, Read, Update, Delete (CRUD) for books
+- 🔍 Filtering & Sorting (by genre, creation date)
+- 📦 Borrow book with quantity check & update
+- 📊 Borrow summary using MongoDB Aggregation
+- ✅ Validation with Mongoose Schema
+- ⚙️ Static methods & Middleware
 
 ---
 
-## 📁 Project Structure
+## 📁 Folder Structure
 
 ```
-├── src
-│   ├── app
-│   │   ├── controllers
-│   │   ├── models
-│   │   ├── routes
-│   └── index.ts
-├── .env
-├── .gitignore
-├── package.json
-├── tsconfig.json
+src/
+├── app/
+│   ├── config/
+│   │   └── db.ts
+│   ├── controllers/
+│   │   ├── book.controller.ts
+│   │   └── borrow.controller.ts
+│   ├── models/
+│   │   ├── book.model.ts
+│   │   └── borrow.model.ts
+│   └── route/
+│       ├── book.route.ts
+│       └── borrow.route.ts
+├── index.ts
+├── server.ts
+.env
+.gitignore
+package.json
+tsconfig.json
+README.md
 ```
 
 ---
 
 ## 📦 Tech Stack
 
-- **Backend:** Express.js  
+- **Framework:** Express.js  
 - **Language:** TypeScript  
-- **Database:** MongoDB (with Mongoose)  
-- **Validation & Logic:** Mongoose Schema, Middleware, Aggregation  
+- **Database:** MongoDB with Mongoose  
+- **Validation:** Mongoose Schema + Custom Middleware  
+- **Tooling:** ts-node-dev, dotenv
 
 ---
 
 ## 🔧 Getting Started
 
-### 1️⃣ Clone the Repository
+### 1️⃣ Clone & Navigate
 
 ```bash
 git clone https://github.com/yourusername/library-api.git
@@ -56,16 +67,16 @@ cd library-api
 npm install
 ```
 
-### 3️⃣ Create a `.env` File
+### 3️⃣ Create `.env` File
 
 ```env
 PORT=5000
-MONGODB_URI=mongodb+srv://yourusername:yourpassword@cluster.mongodb.net/library
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/library
 ```
 
-> ⚠️ Make sure to **not push** this file! It's ignored via `.gitignore`.
+> ⚠️ `.env` is already listed in `.gitignore`
 
-### 4️⃣ Start the Development Server
+### 4️⃣ Run Development Server
 
 ```bash
 npm run dev
@@ -75,26 +86,26 @@ npm run dev
 
 ## 📮 API Endpoints
 
-### ✅ Book Routes
+### ✅ Books
 
-| Method | Endpoint              | Description                |
-|--------|-----------------------|----------------------------|
-| POST   | `/api/books`          | Create a new book          |
-| GET    | `/api/books`          | Get all books (filterable) |
-| GET    | `/api/books/:bookId`  | Get a book by ID           |
-| PUT    | `/api/books/:bookId`  | Update a book              |
-| DELETE | `/api/books/:bookId`  | Delete a book              |
+| Method | Endpoint             | Description                  |
+|--------|----------------------|------------------------------|
+| POST   | `/api/books`         | Create a new book            |
+| GET    | `/api/books`         | Get all books (filterable)   |
+| GET    | `/api/books/:bookId` | Get a single book by ID      |
+| PUT    | `/api/books/:bookId` | Update book info             |
+| DELETE | `/api/books/:bookId` | Delete a book                |
 
-### ✅ Borrow Routes
+### ✅ Borrow
 
-| Method | Endpoint        | Description                       |
-|--------|-----------------|-----------------------------------|
-| POST   | `/api/borrow`   | Borrow a book                     |
-| GET    | `/api/borrow`   | Get summary of borrowed books     |
+| Method | Endpoint       | Description                            |
+|--------|----------------|----------------------------------------|
+| POST   | `/api/borrow`  | Borrow a book (with quantity update)   |
+| GET    | `/api/borrow`  | Get borrow summary using aggregation   |
 
 ---
 
-## 📊 Example Aggregated Response
+## 📊 Aggregated Borrow Summary Example
 
 ```json
 {
@@ -120,7 +131,7 @@ npm run dev
 
 ---
 
-## 📌 Author
+## 🧑‍💻 Author
 
 - **Name:** Yeamin Madbor  
 - **Email:** yeaminstudent5598@gmail.com  
@@ -130,4 +141,5 @@ npm run dev
 
 ## 📄 License
 
-This project is open-source and available under the [MIT License](LICENSE).
+This project is open-source under the [MIT License](LICENSE).
+
